@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript">
+    (function() {
+        var html = document.documentElement;
+        var h_width = html.getBoundingClientRect().width;
+        html.style.fontSize = h_width / 38.4 + "px";
+    })()
+    </script>
+    <script src="../jquery-1.11.1.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+    
+<div class="shopping-cart">
+   <!--  <div>
+        <h3>购物车：</h3>配送至<a href="#">广州番禺城区</a>
+        <span>*请选择您的收货区域，以确认准确商品信息</span>
+    </div> -->
+    <table>
+        <thead class="t-head">  
+            <tr>  
+                <th colspan="1"><label>商品信息</label></th>  
+                <th><label>单价</label></th>  
+                <th class="th-count"><label>数量</label></th>  
+                <th><label>合计</label></th>  
+                <th colspan="2"><label>操作</label></th>    
+            </tr>  
+        </thead>
+        <tbody class="tbody-outer">
+            <tr>
+                <td colspan="8">
+                    <table class="cart-list">
+                            <tr>
+                                <td colspan="7">
+                                    <table class="sub-tab" data-seller-id=1>
+                                        <thead>
+                                            <tr class="seller-title">
+                                                <th>
+                                                    <input type="checkbox" class="seller-checked" />
+                                                </th>
+                                                <th class="seller" colspan="7">
+                                                    店铺：<span class="seller-name">{{sname}}</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="cart-tr" data-product-id={{cid}}> <!-- 这里是对商品做循环 -->
+                                                 <td >
+                                                     <input type="checkbox" class="check-box" />
+                                                 </td>  
+                                                 <td>
+                                                     <a href="./product-detail.html?productId={{cid}}"><img src="../../images/first-main_02.png" alt="img1"></a>
+                                                 </td>
+                                                 <td class="description">  
+                                                     <a href="./product-detail.html?productId={{cid}}">{{cname}} </a>  
+                                                 </td>  
+                                                 <td class="single-price"><span>￥{{cprice}}</span></td>  
+                                                <td>  
+                                                     <div class="input-group">
+                                                         <span class="input-group-addon minus">-</span>  
+                                                         <input type="text" class="number form-control input-sm" value="{{num}}" data-max= "99"/>  
+                                                         <span class="input-group-addon plus">+</span>  
+                                                     </div>
+                                                 </td>
+                                                 <td class="subtotal small-bold-red">￥{{price}}</td>  
+                                                 <td class="operation">
+                                                     <span class="link delete">删除</span> | </td>  
+                                                 <td><a href="./favorite.html">加入心愿单</a></td>
+                                            </tr>
+                                            <tr class="cart-tr" data-product-id={{cid}}> <!-- 这里是对商品做循环 -->
+                                                 <td >
+                                                     <input type="checkbox" class="check-box" />
+                                                 </td>  
+                                                 <td>
+                                                     <a href="./product-detail.html?productId={{cid}}"><img src="../../images/first-main_02.png" alt="img1"></a>
+                                                 </td>
+                                                 <td class="description">  
+                                                     <a href="./product-detail.html?productId={{cid}}">{{cname}} </a>  
+                                                 </td>  
+                                                 <td class="single-price"><span>￥{{cprice}}</span></td>  
+                                                <td>  
+                                                     <div class="input-group">
+                                                         <span class="input-group-addon minus">-</span>  
+                                                         <input type="text" class="number form-control input-sm" value="{{num}}" data-max= "99"/>  
+                                                         <span class="input-group-addon plus">+</span>  
+                                                     </div>
+                                                 </td>
+                                                 <td class="subtotal small-bold-red">￥{{price}}</td>  
+                                                 <td class="operation">
+                                                     <span class="link delete">删除</span> | </td>  
+                                                 <td><a href="./favorite.html">加入心愿单</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>    <!-- .sub-tab -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <table class="sub-tab" data-seller-id=2>
+                                        <thead>
+                                            <tr class="seller-title">
+                                                <th>
+                                                   
+                                                    <input type="checkbox" class="seller-checked" />
+                                                </th>
+                                                <th class="seller" colspan="7">
+                                                    店铺：<span class="seller-name">{{sname}}</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="cart-tr" data-product-id={{cid}}> <!-- 这里是对商品做循环 -->
+                                                 <td >
+                                                   
+                                                     <input type="checkbox" class="check-box" />
+                                                 </td>  
+                                                 <td>
+                                                     <a href="./product-detail.html?productId={{cid}}"><img src="../../images/first-main_02.png" alt="img1"></a>
+                                                 </td>
+                                                 <td class="description">  
+                                                     <a href="./product-detail.html?productId={{cid}}">{{cname}} </a>  
+                                                 </td>  
+                                                 <td class="single-price"><span>￥{{cprice}}</span></td>  
+                                                <td>  
+                                                     <div class="input-group">
+                                                         <span class="input-group-addon minus">-</span>  
+                                                         <input type="text" class="number form-control input-sm" value="{{num}}" data-max= "99"/>  
+                                                         <span class="input-group-addon plus">+</span>  
+                                                     </div>
+                                                 </td>
+                                                 <td class="subtotal small-bold-red">￥{{price}}</td>  
+                                                 <td class="operation">
+                                                     <span class="link delete">删除</span> | </td>  
+                                                 <td><a href="./favorite.html">加入心愿单</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>    <!-- .sub-tab -->
+                                </td>
+                            </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">我们坚信食品安全是每个家庭的基本权利，因此已为您所购的全部商品进行了<span>安心检测</span>；您可以通过订单及短信等<span>查询检测报告</span>。我们为您和家人的健康保驾护航。我们坚信食品安全是每个家庭的基本权利，因此已为您所购的全部商品进行了安心检测；您可以通过订单及短信等 查询检测报告。我们为您和家人的健康保驾护航。</td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <table class="sub-table">
+                        <tr>
+                            <td>
+                                <form class="sel-all">
+                                    <div>
+                                       
+                                        <input type="checkbox" class="check-all" id="check-all"/>
+                                    </div>
+                                    <label for="check-all">全选</label>
+                                </form>
+                            </td>
+                            <td class="link delete-all">删除选中</td>
+                            <td class="link">移入心愿单</td>
+                            <td>商品总价（不含优惠及优惠扣减）<span class="tot-price">￥{{cartTotalPrice}}</span></td>
+                            <td><input type="submit" name="" value="去结算" id="btn-submit"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
