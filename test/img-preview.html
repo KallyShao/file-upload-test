@@ -3,7 +3,22 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="./index.css">
     <script src="./jquery-1.11.1.js"></script>
+   
+</head>
+
+<body>
+    <form action="" id="form1" method="post" enctype="multipart/form-data">
+        <input type="text" name="username">
+        <input type="file" name="img" class="file-item" id="src1" />
+        <input type="file" name="img[]" class="file-item" id="src2" />
+        <!-- <img class="imgPre" src="" width="300px" height="300px" style="display: block;" />
+        <img class="imgPre" src="" width="300px" height="300px" style="display: block;" /> -->
+    </form>
+    <button id="test">测试</button>
+    <ul id="img-list"></ul>
+
     <script type="text/javascript">
     /** 
      * 从 file 域获取 本地图片 url 
@@ -23,18 +38,6 @@
         return url;
     }
 
-    // function getFileUrl(sourceClass) {
-    //         var url;
-    //         if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE 
-    //             url = document.getElementsByClassName(sourceClass)[0].value;
-    //         } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox 
-    //             url = window.URL.createObjectURL(document.getElementsByClassName(sourceClass)[0].files.item(0));
-    //         } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome 
-    //             url = window.URL.createObjectURL(document.getElementsByClassName(sourceClass)[0].files.item(0));
-    //         }
-    //         return url;
-    //     }
-
     /** 
      * 将本地图片 显示到浏览器上 
      */
@@ -48,33 +51,44 @@
 
 
     $(function(){
-        var fileList = [];
+        var form = $('#form1');
+        var formdata = new FormData(form);
+            // var fileList = [];
         $('.file-item').change(function(){
+            var file = $(this)[0].files[0];
+            formdata.append('myfile', file);
+            // formdata.append('myfile', $('#src1')[0].files[0]);  //对应的文件后面必须指定[0]
+            // formdata.append('myfile', $('#src2')[0].files[0]);  //对应的文件后面必须指定[0]
+           
+            var fileList = [];
             var url = getFileUrl($(this).attr("id"));
             fileList.push(url);
-            console.log(fileList);
-
+            // console.log(fileList);
             //对fileList做遍历，并将对应图片显示
+            
             $.each(fileList, function(index, value){
                 var str = "<li><img src='" + value + "'/></li>";
                 var $li = $(str);
                 $('#img-list').append($li);
             })
         });
+
+        $('#test').click(function(){
+            
+            // formdata.append('name', 'kally');
+            var all = formdata.get('myfile');
+            // var all = formdata.getAll('myfile');
+           console.log(all);
+        })
+
     });
     </script>
-</head>
 
-<body>
-    <form action="">
-        <!-- <input type="file" name="img2" class="file-item" id="src1" onchange="preImg(this.id,'imgPre');"/>
-        <input type="file" name="img1" class="file-item" id="src2" onchange="preImg(this.id,'imgPre');"/> -->
-        <input type="file" name="img2" class="file-item" id="src1"/>
-        <input type="file" name="img1" class="file-item" id="src2"/>
-        <!-- <img class="imgPre" src="" width="300px" height="300px" style="display: block;" />
-        <img class="imgPre" src="" width="300px" height="300px" style="display: block;" /> -->
-    </form>
-    <ul id="img-list"></ul>
+
+
+
+
+
 </body>
 
 </html>
