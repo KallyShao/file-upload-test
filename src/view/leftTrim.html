@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jq插件扩展测试</title>
+ <style>
+    #div1{
+        width: 100px;
+        height: 100px;
+        background: #0f0;
+    }
+ </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+
+     <button id="btn"></button>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $.fn.extend({
+        drag: function(){
+            //扩展jq对象时，this代表的是调用该函数的前面的对象,这里this指$('#div1')
+            var disX = 0;
+            var disY = 0;
+            var _this = this;
+            this.mousedown(function(ev){
+                console.log(999);
+                disX = ev.pageX - $(this).offset().left;
+                disY = ev.pageY - $(this).offset().top;
+
+                $(document).mousemove(function(ev){
+                    _this.css('left', ev.pageX - disX);
+                    _this.css('top', ev.pageY - disY);
+                });
+
+                $(document).mouseup(function(){
+                    $(this).off();
+                });
+                return false;
+            })
+        },
+        turnRed: function(){
+            this.css('background', 'red');
+        }
+    });
+
+
+    $(function(){
+
+
+
+        // var str = '  hello   ';
+        // console.log('(' + $.trim(str) + ')');
+        // $.extend({
+        //     leftTrim: function(str){
+        //         return str.replace(/^\s+/, '')
+        //     },
+        //     rightTrim: function(){},
+        //     aaa: function(){}
+        // })
+        // console.log('(' + $.leftTrim(str) + ')');
+
+          $('#div1').drag();
+          $('#btn').click(function(){
+            $('#div1').turnRed();
+          })
+    });
+
+  
+
+</script>
+   
+</body>
+
+</html>
